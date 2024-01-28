@@ -1,20 +1,40 @@
 "use strict"
 
-function getElementWidth(content, padding, border) {
-    //2 ways resolving the task
-    //1-st
-    const boxSizing = Number.parseFloat(content) + 2 * Number.parseFloat(padding) + 2 * Number.parseFloat(border);
+function getAllPropValues(propName) {
+  const products = [
+    { name: "Radar", price: 1300, quantity: 4 },
+    { name: "Scanner", price: 2700, quantity: 3 },
+    { name: "Droid", price: 400, quantity: 7 },
+    { name: "Grip", price: 1200, quantity: 9 },
+  ];
+
     
-    //2-d
-    // content = Number.parseFloat(content);
-    // padding = Number.parseFloat(padding);
-    // border = Number.parseFloat(border);
-    // const boxSizing = content + 2 * padding + 2 * border;
+let allValues = [];
+    for (let product of products) {
+    if (Object.keys(product).includes(propName)) {
+        allValues.push(product[propName]);
+    }
+  }
+return allValues
 
-    return boxSizing;
+//  let result = [];
+//   for (let i = 0; i < products.length; i++) {
+//     if (propName in products[i]) {
+//       result.push(products[i][propName]);
+//     }
+//   }
+//   return result;
 
+  
 }
 
-console.log(getElementWidth("50px", "8px", "4px")); // 74
-console.log(getElementWidth("60px", "12px", "8.5px")); // 101
-console.log(getElementWidth("200px", "0px", "0px")); // 200
+console.log(getAllPropValues("quantity")) // [4, 3, 7, 9]
+console.log(getAllPropValues("price")) // [1300, 2700, 400, 1200]
+console.log(getAllPropValues("category")) // []
+
+
+// Напиши функцію getAllPropValues(propName), яка приймає один параметр 
+// propName - ім'я (ключ) властивості. Функція повинна повернути масив усіх значень 
+// властивості з таким ім'ям з кожного об'єкта в масиві products.
+// Якщо в об'єктах відсутні властивості з таким ім'ям,
+// функція повинна повернути порожній масив.
